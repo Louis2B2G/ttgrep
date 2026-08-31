@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ttgrep"
-version = "0.5.0"
+version = "0.5.1"
 description = "grep for TikTok. Your AI agent syncs whole accounts, gets every word as text, and searches it. Free, local, cached forever."
 readme = "README.md"
 license = "MIT"
@@ -26,3 +26,7 @@ ttgrep = "ttgrep.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["ttgrep"]
+
+[tool.hatch.build.targets.sdist]
+# Ship code, not demo videos or local editor config.
+only-include = ["ttgrep", "README.md", "LICENSE", "pyproject.toml"]
