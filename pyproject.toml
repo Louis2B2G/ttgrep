@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ttgrep"
+version = "0.5.0"
+description = "grep for TikTok. Your AI agent syncs whole accounts, gets every word as text, and searches it. Free, local, cached forever."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "yt-dlp[curl-cffi]>=2026.8.19",
+    # Local whisper for videos without TikTok captions (free, on-device).
+    "mlx-whisper>=0.4.0; sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "faster-whisper>=1.0.0; sys_platform != 'darwin' or platform_machine != 'arm64'",
+    # `ttgrep mcp` — serve the same commands to MCP clients over stdio.
+    "mcp>=1.2",
+]
+
+[project.urls]
+Repository = "https://github.com/Louis2B2G/ttgrep"
+
+[project.scripts]
+ttgrep = "ttgrep.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ttgrep"]
